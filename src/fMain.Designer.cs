@@ -31,14 +31,14 @@ namespace PsrMhtReader
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnClosePage = new System.Windows.Forms.Button();
-            this.btnSrcFile = new System.Windows.Forms.Button();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnClosePage = new System.Windows.Forms.Button();
+            this.btnSrcFile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
@@ -56,31 +56,6 @@ namespace PsrMhtReader
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Source File";
-            // 
-            // btnClosePage
-            // 
-            this.btnClosePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClosePage.BackgroundImage = global::PsrMhtReader.Properties.Resources.icons8_close_sign_24;
-            this.btnClosePage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnClosePage.Location = new System.Drawing.Point(898, 14);
-            this.btnClosePage.Name = "btnClosePage";
-            this.btnClosePage.Size = new System.Drawing.Size(28, 28);
-            this.btnClosePage.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.btnClosePage, "Close open files.");
-            this.btnClosePage.UseVisualStyleBackColor = true;
-            this.btnClosePage.Click += new System.EventHandler(this.btnClosePage_Click);
-            // 
-            // btnSrcFile
-            // 
-            this.btnSrcFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSrcFile.Image = global::PsrMhtReader.Properties.Resources.icons8_linking_24;
-            this.btnSrcFile.Location = new System.Drawing.Point(857, 14);
-            this.btnSrcFile.Name = "btnSrcFile";
-            this.btnSrcFile.Size = new System.Drawing.Size(28, 28);
-            this.btnSrcFile.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.btnSrcFile, "Open the disassembled folder of the mht file");
-            this.btnSrcFile.UseVisualStyleBackColor = true;
-            this.btnSrcFile.Click += new System.EventHandler(this.btnSrcFile_Click);
             // 
             // btnOpenFile
             // 
@@ -136,6 +111,31 @@ namespace PsrMhtReader
             this.ofdOpenFile.Filter = "mht File|*.mht";
             this.ofdOpenFile.Title = "Select the mht file to open ...";
             // 
+            // btnClosePage
+            // 
+            this.btnClosePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClosePage.BackgroundImage = global::PsrMhtReader.Properties.Resources.icons8_close_sign_24;
+            this.btnClosePage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClosePage.Location = new System.Drawing.Point(898, 14);
+            this.btnClosePage.Name = "btnClosePage";
+            this.btnClosePage.Size = new System.Drawing.Size(28, 28);
+            this.btnClosePage.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.btnClosePage, "Close open files.");
+            this.btnClosePage.UseVisualStyleBackColor = true;
+            this.btnClosePage.Click += new System.EventHandler(this.btnClosePage_Click);
+            // 
+            // btnSrcFile
+            // 
+            this.btnSrcFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSrcFile.Image = global::PsrMhtReader.Properties.Resources.icons8_linking_24;
+            this.btnSrcFile.Location = new System.Drawing.Point(857, 14);
+            this.btnSrcFile.Name = "btnSrcFile";
+            this.btnSrcFile.Size = new System.Drawing.Size(28, 28);
+            this.btnSrcFile.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.btnSrcFile, "Open the disassembled folder of the mht file");
+            this.btnSrcFile.UseVisualStyleBackColor = true;
+            this.btnSrcFile.Click += new System.EventHandler(this.btnSrcFile_Click);
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -146,8 +146,10 @@ namespace PsrMhtReader
             this.Controls.Add(this.groupBox1);
             this.Name = "fMain";
             this.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Problem Steps Recorder - MHT Reader";
             this.Load += new System.EventHandler(this.fMain_Load);
+            this.Shown += new System.EventHandler(this.fMain_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ProcessFile_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ProcessFileDrop_DragEnter);
             this.groupBox1.ResumeLayout(false);

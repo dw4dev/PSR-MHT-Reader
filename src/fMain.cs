@@ -211,5 +211,25 @@ namespace PsrMhtReader
                 output_folder = "";
             }
         }
+
+        private void fMain_Shown(object sender, EventArgs e)
+        {
+            CheckWebView2Availability();
+        }
+
+        async void CheckWebView2Availability()
+        {
+            try
+            {
+                await webView21.EnsureCoreWebView2Async();
+                webView21.Source = new Uri("about:blank");
+            }
+            catch
+            {
+                MessageBox.Show("Important components are missing. \nGo to the link below to download and install WebView2 Runtime.\n\nhttps://developer.microsoft.com/en-us/microsoft-edge/webview2/",
+                    "Lost WebView2 Runtime", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Process.Start("https://developer.microsoft.com/en-us/microsoft-edge/webview2/");
+            }
+        }
     }
 }
