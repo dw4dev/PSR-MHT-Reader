@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace PsrMhtReader
 {
     public partial class fMain : Form
     {
+        string output_folder = "";
+
         public fMain()
         {
             InitializeComponent();
@@ -62,6 +65,9 @@ namespace PsrMhtReader
 
             string tmpname = Path.GetTempFileName().Replace(".tmp", "");
             string output_path = Path.Combine(Path.GetTempPath(), tmpname);
+
+            output_folder = output_path;
+
             if (!Directory.Exists(output_path))
                 Directory.CreateDirectory(output_path);
 
@@ -174,5 +180,36 @@ namespace PsrMhtReader
             bw.Close();
         }
 
+        private void btnOpenFile_Click(object sender, EventArgs e)
+        {
+            string init_folder = "";
+            if (txtFilePath.Text != "")
+                init_folder = Path.GetDirectoryName(txtFilePath.Text);
+
+            ofdOpenFile.InitialDirectory =
+                init_folder == "" ? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
+                : init_folder;
+            if (ofdOpenFile.ShowDialog() == DialogResult.OK)
+            {
+                txtFilePath.Text = ofdOpenFile.FileName;
+                ProcessMHTFile(ofdOpenFile.FileName);
+            }
+        }
+
+        private void btnSrcFile_Click(object sender, EventArgs e)
+        {
+            if (output_folder != "")
+                Process.Start(output_folder);
+        }
+
+        private void btnClosePage_Click(object sender, EventArgs e)
+        {
+            if (output_folder != "")
+            {
+                webView21.Source = new Uri("about:blank");
+                txtFilePath.Text = "";
+                output_folder = "";
+            }
+        }
     }
 }
